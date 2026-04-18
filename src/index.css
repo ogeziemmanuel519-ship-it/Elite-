@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 240 7% 4%;
+    --foreground: 240 5% 96%;
+    --card: 240 6% 8%;
+    --card-foreground: 240 5% 96%;
+    --popover: 240 6% 8%;
+    --popover-foreground: 240 5% 96%;
+    --primary: 45 65% 52%;
+    --primary-foreground: 240 7% 4%;
+    --secondary: 240 6% 12%;
+    --secondary-foreground: 240 5% 96%;
+    --muted: 240 6% 15%;
+    --muted-foreground: 240 5% 65%;
+    --accent: 45 65% 52%;
+    --accent-foreground: 240 7% 4%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5% 18%;
+    --input: 240 5% 18%;
+    --ring: 45 65% 52%;
+    --radius: 0.625rem;
+    --gold: 45 65% 52%;
+    --gold-light: 45 65% 62%;
+    --dark: 240 7% 4%;
+    --dark-secondary: 240 6% 10%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', sans-serif;
+  }
+  
+  .font-mono {
+    font-family: 'IBM Plex Mono', monospace;
+  }
+}
+
+@layer components {
+  .text-gold {
+    color: hsl(var(--gold));
+  }
+  
+  .bg-gold {
+    background-color: hsl(var(--gold));
+  }
+  
+  .border-gold {
+    border-color: hsl(var(--gold));
+  }
+  
+  .card-dark {
+    @apply bg-card/80 backdrop-blur-sm border border-white/[0.08] rounded-[28px];
+  }
+  
+  .card-dark-sm {
+    @apply bg-card/80 backdrop-blur-sm border border-white/[0.08] rounded-[18px];
+  }
+  
+  .btn-gold {
+    @apply px-6 py-3 border border-gold text-gold rounded-full font-medium transition-all duration-300;
+  }
+  
+  .btn-gold:hover {
+    @apply bg-gold text-[#0B0B0D];
+  }
+  
+  .btn-gold-solid {
+    @apply px-6 py-3 bg-gold text-[#0B0B0D] rounded-full font-medium transition-all duration-300;
+  }
+  
+  .btn-gold-solid:hover {
+    @apply bg-[#E5C158];
+  }
+  
+  .grain-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.04;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  }
+  
+  .vignette {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    background: radial-gradient(ellipse at center, transparent 0%, transparent 50%, rgba(0,0,0,0.4) 100%);
+  }
+  
+  .section-pinned {
+    @apply relative w-screen h-screen overflow-hidden;
+  }
+  
+  .eyebrow {
+    @apply font-mono text-xs uppercase tracking-[0.12em] text-muted-foreground;
+  }
+  
+  .scramble-text {
+    @apply inline-block;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--border));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground));
+}
+
+/* Selection */
+::selection {
+  background: hsl(var(--gold) / 0.3);
+  color: hsl(var(--foreground));
+}

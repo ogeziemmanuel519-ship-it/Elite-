@@ -1,0 +1,240 @@
+/* App-specific styles */
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Ensure pinned sections stack correctly */
+.section-pinned {
+  will-change: transform;
+}
+
+/* Card hover effects */
+.card-dark,
+.card-dark-sm {
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.card-dark:hover,
+.card-dark-sm:hover {
+  border-color: rgba(212, 175, 55, 0.2);
+}
+
+/* Button animations */
+.btn-gold,
+.btn-gold-solid {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-gold::before,
+.btn-gold-solid::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.btn-gold:hover::before,
+.btn-gold-solid:hover::before {
+  left: 100%;
+}
+
+/* Form input focus states */
+input:focus,
+textarea:focus,
+select:focus {
+  box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+}
+
+/* Scramble text effect */
+.scramble-text {
+  display: inline-block;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Floating animation for icons */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.animate-float {
+  animation: float 3.5s ease-in-out infinite;
+}
+
+/* Star rating animation */
+.star-rating {
+  display: flex;
+  gap: 4px;
+}
+
+/* Portfolio card image zoom */
+.portfolio-image-wrapper {
+  overflow: hidden;
+}
+
+.portfolio-image-wrapper img {
+  transition: transform 0.5s ease;
+}
+
+.portfolio-image-wrapper:hover img {
+  transform: scale(1.05);
+}
+
+/* Pricing card highlight */
+.pricing-card.popular {
+  border-color: rgba(212, 175, 55, 0.5);
+  position: relative;
+}
+
+.pricing-card.popular::before {
+  content: 'Most Popular';
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: hsl(45 65% 52%);
+  color: #0B0B0D;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 4px 16px;
+  border-radius: 20px;
+}
+
+/* Testimonial quote styling */
+.testimonial-quote {
+  position: relative;
+  padding-left: 24px;
+}
+
+.testimonial-quote::before {
+  content: '"';
+  position: absolute;
+  left: 0;
+  top: -8px;
+  font-size: 48px;
+  color: rgba(212, 175, 55, 0.2);
+  font-family: Georgia, serif;
+  line-height: 1;
+}
+
+/* Process step numbers */
+.process-number {
+  font-family: 'IBM Plex Mono', monospace;
+  color: hsl(45 65% 52%);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Mobile menu animation */
+.mobile-menu-enter {
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Scroll-triggered fade in */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Link underline animation */
+.link-underline {
+  position: relative;
+}
+
+.link-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: hsl(45 65% 52%);
+  transition: width 0.3s ease;
+}
+
+.link-underline:hover::after {
+  width: 100%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .section-pinned {
+    min-height: auto;
+    height: auto;
+    padding: 100px 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .card-dark,
+  .card-dark-sm {
+    border-radius: 20px;
+  }
+  
+  h1 {
+    font-size: 2.5rem !important;
+  }
+  
+  h2 {
+    font-size: 1.875rem !important;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Print styles */
+@media print {
+  .grain-overlay,
+  .vignette,
+  nav {
+    display: none !important;
+  }
+  
+  .section-pinned {
+    height: auto !important;
+    page-break-inside: avoid;
+  }
+}
